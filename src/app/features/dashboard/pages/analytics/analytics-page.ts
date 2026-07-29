@@ -9,4 +9,4 @@ import { Component } from '@angular/core';
     </section>
   `,
 })
-export class AnalyticsPage {}
+export default class AnalyticsPage {}

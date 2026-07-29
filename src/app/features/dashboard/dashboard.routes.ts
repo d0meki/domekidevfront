@@ -10,8 +10,9 @@ export const dashboardRoutes: Routes = [
     children: [
       {
         path: 'analytics',
-        loadComponent: () =>
-          import('./pages/analytics/analytics-page').then((module) => module.AnalyticsPage),
+        // loadComponent: () =>
+        //   import('./pages/analytics/analytics-page').then((module) => module.AnalyticsPage),
+        loadComponent: () => import('./pages/analytics/analytics-page'),
         title: 'Analytics | Dashboard',
       },
       {

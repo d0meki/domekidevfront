@@ -15,7 +15,6 @@ import { AuthService } from '../../services/auth.service';
     CheckboxComponent,
     InputFieldComponent,
     LabelComponent,
-    RouterModule,
   ],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',
@@ -51,7 +50,7 @@ export default class LoginPage {
   });
 
   onSubmit() {
-    if (this.loginForm.invalid) {
+    if (this.loginForm.invalid || this.isLoading()) {
       // this.messageService.add({
       //   severity: 'error',
       //   summary: 'Error',

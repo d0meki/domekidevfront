@@ -1,0 +1,85 @@
+<div>
+  <app-page-breadcrumb pageTitle="Bases" />
+  <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+    <!-- Counter -->
+    <div class="space-y-6">
+      <app-component-card title="Counter">
+        <h1>Counter: {{ counter }}</h1>
+        <h1>Counter Signal: {{ counterSignal() }}</h1>
+        <hr />
+        <div class="col-start-1 col-end-5 flex">
+          <ui-button size="sm" class="mr-2" variant="outline" (click)="increaseBy(1)"
+            >Increment + 1</ui-button
+          >
+          <ui-button size="sm" class="mr-2" variant="outline" (click)="increaseBy(-1)"
+            >Decrement - 1</ui-button
+          >
+          <ui-button size="sm" class="mr-2" variant="outline" (click)="resetCounter()"
+            >Reset</ui-button
+          >
+        </div>
+      </app-component-card>
+    </div>
+    <!-- Dragon Ball -->
+    <div class="space-y-6">
+      <app-component-card title="Dragon Ball">
+        <div class="grid grid-cols-2">
+          <div class="mr-2">
+            <h3 class="mb-2">Agregar: {{ name() }}</h3>
+            <hr />
+            <app-input-field
+              placeholder="Nombre del personaje"
+              [value]="name()"
+              (valueChange)="name.set($event.toString())"
+            />
+            <!-- <p-floatlabel class="mt-7">
+          <input
+            pInputText
+            #txtName
+            [value]="name()"
+            (change)="name.set(txtName.value)"
+            (input)="name.set(txtName.value)"
+            autocomplete="off"
+          />
+          <label for="over_label">Nombre</label>
+        </p-floatlabel> -->
+
+            <!-- <p-floatlabel class="mt-7 mb-4">
+          <p-inputNumber
+            inputId="power_label"
+            [ngModel]="power()"
+            (ngModelChange)="power.set($event)"
+            autocomplete="off"
+          />
+          <label for="power_label">Poder</label>
+        </p-floatlabel> -->
+
+            <!-- <p-button label="Agregar" (click)="addCharacter()" /> -->
+          </div>
+
+          <div class="ml-2">
+            <h3>Listado fuertes</h3>
+            <ul>
+              @for (character of characters(); track character.id; let idx = $index) {
+                @if (character.power > 500) {
+                  <li>
+                    <span>{{ idx + 1 }} - {{ character.name }}</span>
+                    <strong
+                      [class.text-red-500]="character.power > 9000"
+                      [class.text-blue-500]="character.power < 9000"
+                    >
+                      <!-- [ngClass]="powerClasses()" -->
+                      ({{ character.power }})</strong
+                    >
+                  </li>
+                } @else {
+                  <li><strong>Aquí no hay nadie</strong></li>
+                }
+              }
+            </ul>
+          </div>
+        </div>
+      </app-component-card>
+    </div>
+  </div>
+</div>
