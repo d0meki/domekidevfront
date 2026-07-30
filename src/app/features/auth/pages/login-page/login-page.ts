@@ -23,16 +23,16 @@ export default class LoginPage {
   showPassword = false;
   isChecked = false;
 
-  email = '';
-  password = '';
+  // email = '';
+  // password = '';
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
   onSignIn() {
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
+    // console.log('Email:', this.email);
+    // console.log('Password:', this.password);
     console.log('Remember Me:', this.isChecked);
   }
 
@@ -45,8 +45,8 @@ export default class LoginPage {
   isDarkTheme = signal(false);
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    email: ['freddyarriagacruz@gmail.com', [Validators.required, Validators.email]],
+    password: ['irascema', [Validators.required, Validators.minLength(6)]],
   });
 
   onSubmit() {
@@ -57,7 +57,7 @@ export default class LoginPage {
       //   detail: 'Por favor revise la información ingresada.',
       //   life: 3000,
       // });
-      console.log("formulario incompleto");
+      console.log('formulario incompleto');
       return;
     }
 
@@ -66,7 +66,7 @@ export default class LoginPage {
 
     this.authService.login(email!, password!).subscribe((isAuthenticated) => {
       console.log(isAuthenticated);
-      
+
       if (isAuthenticated) {
         this.router.navigateByUrl('/dashboard/analytics');
         this.isLoading.set(false);
@@ -79,7 +79,7 @@ export default class LoginPage {
       //   detail: 'Correo o contraseña incorrectos.',
       //   life: 3000,
       // });
-      console.log("password o email incorrectos");
+      console.log('password o email incorrectos');
     });
   }
 

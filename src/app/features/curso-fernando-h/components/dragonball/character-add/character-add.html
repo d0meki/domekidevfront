@@ -1,0 +1,43 @@
+<!-- <h3>Agregar: {{ name() }}</h3>
+
+<p-floatlabel class="mt-7">
+  <input
+    pInputText
+    #txtName
+    [value]="name()"
+    (change)="name.set(txtName.value)"
+    (input)="name.set(txtName.value)"
+    autocomplete="off"
+  />
+  <label for="over_label">Nombre</label>
+</p-floatlabel>
+
+<p-floatlabel class="mt-7 mb-4">
+  <p-inputNumber
+    inputId="power_label"
+    [ngModel]="power()"
+    (ngModelChange)="power.set($event)"
+    autocomplete="off"
+  />
+  <label for="power_label">Poder</label>
+</p-floatlabel>
+
+<p-button label="Agregar" (click)="addCharacter()" /> -->
+<h3 class="mb-2">Agregar: {{ name() }}</h3>
+<hr />
+<app-input-field
+  placeholder="Nombre del personaje"
+  #txtName
+  [value]="name()"
+  (valueChange)="name.set(txtName.toString())"
+  (input)="name.set(txtName.value.toString())"
+/>
+<app-input-field
+  inputId="power_label"
+  className="mt-2"
+  type="number"
+  placeholder="Poder"
+  [value]="power()"
+  (valueChange)="power.set(+$event)"
+/>
+<ui-button size="sm" className="mt-2" variant="outline" (click)="addCharacter()">Agregar</ui-button>

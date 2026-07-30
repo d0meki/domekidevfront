@@ -10,9 +10,13 @@ export const cursoFernandoHRoutes: Routes = [
     children: [
       {
         path: 'counter',
-        loadComponent: () =>
-          import('./pages/bases/bases'),
-        title: 'Analytics | Dashboard',
+        loadComponent: () => import('./pages/bases/bases'),
+        // title: 'Analytics | Dashboard',
+      },
+      {
+        path: 'gifs',
+        loadComponent: () => import('./pages/gifs/list-gifs-page/list-gifs-page'),
+        // title: 'Analytics | Dashboard',
       },
       {
         path: '',

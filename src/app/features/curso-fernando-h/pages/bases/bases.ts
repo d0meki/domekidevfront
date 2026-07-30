@@ -1,28 +1,36 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { PageBreadcrumbComponent } from '@app/shared/components/common/page-breadcrumb.component';
 import { ComponentCardComponent } from '@app/shared/components/common/component-card.component';
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
-import { InputFieldComponent } from "@app/shared/forms/input/input-field.component";
-export interface Character {
-  id: number;
-  name: string;
-  power: number;
-}
+import { CommonModule } from '@angular/common';
+import { DragonballService } from '../../services/dragonball.service';
+import { CharacterAdd } from '../../components/dragonball/character-add/character-add';
+import { CharacterList } from '../../components/dragonball/character-list/character-list';
+
 @Component({
   selector: 'app-bases',
-  imports: [PageBreadcrumbComponent, ComponentCardComponent, ButtonComponent, InputFieldComponent],
+  imports: [
+    CommonModule,
+    PageBreadcrumbComponent,
+    ComponentCardComponent,
+    ButtonComponent,
+    CharacterAdd,
+    CharacterList,
+  ],
   templateUrl: './bases.html',
   styleUrl: './bases.css',
 })
 export default class Bases {
+  public dragonballService = inject(DragonballService);
   counter = 10;
   counterSignal = signal(10);
+  name = signal('Ironman');
+  age = signal(45);
 
   constructor() {}
 
   increaseBy(value: number) {
     this.counter += value;
-    // this.counterSignal.set(this.counterSignal() + value);
     this.counterSignal.update((current) => current + value);
   }
 
@@ -31,39 +39,24 @@ export default class Bases {
     this.counterSignal.set(0);
   }
 
-  name = signal<string>('');
-  power = signal<number>(0);
+  heroDescription = computed(() => {
+    const description = `${this.name()} - ${this.age()}`;
+    return description;
+  });
 
-  characters = signal<Character[]>([
-    { id: 1, name: 'Goku', power: 9001 },
-    // { id: 2, name: 'Vegeta', power: 8000 },
-    // { id: 4, name: 'Yamcha', power: 500 },
-    // { id: 3, name: 'Piccolo', power: 3000 },
-  ]);
+  capitalizedName = computed(() => this.name().toUpperCase());
 
-  // powerClasses = computed(() => {
-  //   return {
-  //     'text-danger': true,
-  //   };
-  // });
-
-  addCharacter() {
-    if (!this.name() || !this.power() || this.power() <= 0) {
-      return;
-    }
-
-    const newCharacter: Character = {
-      id: this.characters().length + 1,
-      name: this.name(),
-      power: this.power(),
-    };
-
-    this.characters.update((list) => [...list, newCharacter]);
-    this.resetFields();
+  changeHero() {
+    this.name.set('Spiderman');
+    this.age.set(22);
   }
 
-  resetFields() {
-    this.name.set('');
-    this.power.set(0);
+  changeAge() {
+    this.age.set(60);
+  }
+
+  resetForm() {
+    this.name.set('Ironman');
+    this.age.set(45);
   }
 }

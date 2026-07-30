@@ -25,60 +25,40 @@
       <app-component-card title="Dragon Ball">
         <div class="grid grid-cols-2">
           <div class="mr-2">
-            <h3 class="mb-2">Agregar: {{ name() }}</h3>
-            <hr />
-            <app-input-field
-              placeholder="Nombre del personaje"
-              [value]="name()"
-              (valueChange)="name.set($event.toString())"
-            />
-            <!-- <p-floatlabel class="mt-7">
-          <input
-            pInputText
-            #txtName
-            [value]="name()"
-            (change)="name.set(txtName.value)"
-            (input)="name.set(txtName.value)"
-            autocomplete="off"
-          />
-          <label for="over_label">Nombre</label>
-        </p-floatlabel> -->
-
-            <!-- <p-floatlabel class="mt-7 mb-4">
-          <p-inputNumber
-            inputId="power_label"
-            [ngModel]="power()"
-            (ngModelChange)="power.set($event)"
-            autocomplete="off"
-          />
-          <label for="power_label">Poder</label>
-        </p-floatlabel> -->
-
-            <!-- <p-button label="Agregar" (click)="addCharacter()" /> -->
+            <app-character-add (newCharacter)="dragonballService.addCharacter($event)" />
           </div>
 
           <div class="ml-2">
-            <h3>Listado fuertes</h3>
-            <ul>
-              @for (character of characters(); track character.id; let idx = $index) {
-                @if (character.power > 500) {
-                  <li>
-                    <span>{{ idx + 1 }} - {{ character.name }}</span>
-                    <strong
-                      [class.text-red-500]="character.power > 9000"
-                      [class.text-blue-500]="character.power < 9000"
-                    >
-                      <!-- [ngClass]="powerClasses()" -->
-                      ({{ character.power }})</strong
-                    >
-                  </li>
-                } @else {
-                  <li><strong>Aquí no hay nadie</strong></li>
-                }
-              }
-            </ul>
+            <app-character-list
+              listName="Listado de personajes"
+              [characters]="dragonballService.characters()"
+            />
           </div>
         </div>
+      </app-component-card>
+    </div>
+    <!-- Hero -->
+    <div class="space-y-6">
+      <app-component-card title="Dragon Ball">
+        <h1>{{ name() }}</h1>
+
+        <dl class="mb-4">
+          <td>Nombre:</td>
+          <dd>{{ name() }}</dd>
+
+          <td>Edad:</td>
+          <dd>{{ age() }}</dd>
+
+          <td>Método:</td>
+          <dd>{{ heroDescription() }}</dd>
+
+          <td>Capitalizado:</td>
+          <dd>{{ capitalizedName() }}</dd>
+          <!-- <dd>{{ name() | uppercase }}</dd> -->
+        </dl>
+        <ui-button size="sm" class="mr-2" variant="outline" (click)="changeHero()">Cambiar nombre</ui-button>
+        <ui-button size="sm" class="mr-2" variant="outline" (click)="changeAge()">Cambiar edad</ui-button>
+        <ui-button size="sm" class="mr-2" variant="outline" (click)="resetForm()">Reset</ui-button>
       </app-component-card>
     </div>
   </div>
