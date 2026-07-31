@@ -14,7 +14,7 @@ export const cursoFernandoHRoutes: Routes = [
         // title: 'Analytics | Dashboard',
       },
       {
-        path: 'gifs',
+        path: 'gifs/:query',
         loadComponent: () => import('./pages/gifs/list-gifs-page/list-gifs-page'),
         // title: 'Analytics | Dashboard',
       },

@@ -94,6 +94,10 @@ export class GifsService {
   }
 
   getHistoryGifs(query: string): Gif[] {
-    return this.searchHistory()[query] ?? [];
+    return this.searchHistory()[query.trim().toLowerCase()] ?? [];
+  }
+
+  hasHistoryGifs(query: string): boolean {
+    return Object.hasOwn(this.searchHistory(), query.trim().toLowerCase());
   }
 }
