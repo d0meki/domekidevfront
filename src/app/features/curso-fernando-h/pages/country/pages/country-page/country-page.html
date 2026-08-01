@@ -1,0 +1,86 @@
+@if (countryResource.isLoading()) {
+  <div class="flex justify-center mt-10">
+    <!-- <p-progressspinner /> -->
+     <label for="">Cargando....</label>
+  </div>
+} @else if (countryResource.error()) {
+  <!-- <p-message severity="error" text="No se pudo cargar la información del país." /> -->
+} @else if (countryResource.hasValue()) {
+  @let country = countryResource.value()!;
+
+  <div class="p-4">
+
+    <!-- Nombre del país -->
+    <div class="flex align-items-center gap-3 mb-5">
+      <span class="text-5xl" [attr.aria-label]="country.name + ' flag'">{{ country.flag }}</span>
+      <h1 class="text-4xl font-bold m-0">{{ country.name }}</h1>
+    </div>
+
+    <!-- Estadísticas: población | región | subregión | capital -->
+    <!-- <p-card class="mb-4">
+      <div class="flex flex-wrap gap-3">
+        <p-tag
+          icon="pi pi-users"
+          [value]="'Población: ' + (country.population | number)"
+          severity="info"
+        />
+        <p-tag
+          icon="pi pi-globe"
+          [value]="country.region"
+          severity="success"
+        />
+        <p-tag
+          icon="pi pi-map"
+          [value]="country.subRegion"
+          severity="warn"
+        />
+        <p-tag
+          [value]="country.cca2"
+          severity="secondary"
+        />
+        <p-tag
+          [value]="country.capital"
+          icon="pi pi-building"
+        />
+      </div>
+    </p-card> -->
+
+    <!-- Bandera + Mapa lado a lado -->
+    <!-- <p-card class="mb-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  
+        <div class="flex flex-col align-items-center gap-3">
+          <h2 class="text-xl font-semibold m-0">Bandera oficial</h2>
+          <p-image
+            [src]="country.flagSvg"
+            [alt]="'Bandera de ' + country.name"
+            width="100%"
+            [preview]="true"
+            class="w-full"
+          />
+        </div>
+
+     
+        <div class="flex flex-col gap-3">
+          <h2 class="text-xl font-semibold m-0">Ubicación en el mapa</h2>
+          @if (mapUrl()) {
+            <iframe
+              [src]="mapUrl()!"
+              width="100%"
+              height="360"
+              style="border: 0; border-radius: 8px;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              [title]="'Mapa de ' + country.name"
+            ></iframe>
+          }
+        </div>
+
+      </div>
+    </p-card> -->
+
+  </div>
+}
+

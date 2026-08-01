@@ -45,8 +45,8 @@ export default class LoginPage {
   isDarkTheme = signal(false);
 
   loginForm = this.fb.group({
-    email: ['freddyarriagacruz@gmail.com', [Validators.required, Validators.email]],
-    password: ['irascema', [Validators.required, Validators.minLength(6)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   onSubmit() {

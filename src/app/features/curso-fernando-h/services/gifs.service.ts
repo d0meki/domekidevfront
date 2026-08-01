@@ -4,7 +4,7 @@ import { Gif } from '../interfaces/gif.interface';
 import { GiphyResponse } from '../interfaces/giphy.interface';
 import { environment } from '@environments/environment';
 import { map, Observable, tap } from 'rxjs';
-import { GifMapper } from '../pages/gifs/mapper/gif.mapper';
+import { GifMapper } from '../mappers/gif.mapper';
 const GIF_KEY = 'gifs';
 const loadFromLocalStorage = () => {
   const gifsFromLocalStorage = localStorage.getItem(GIF_KEY) ?? '{}'; //Record<string, gifs[]>

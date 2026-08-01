@@ -39,6 +39,7 @@ export default class AdminSidebar {
       subItems: [
         { name: 'Counter', path: '/bases/counter', pro: false },
         { name: 'Gifs', path: '/bases/gifs/null', pro: false },
+        { name: 'Country', path: '/bases/capital', pro: false },
         { name: '404 Error', path: '/error-404', pro: false },
       ],
     },
