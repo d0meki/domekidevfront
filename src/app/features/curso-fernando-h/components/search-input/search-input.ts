@@ -6,7 +6,7 @@ import {
   linkedSignal,
   output,
 } from '@angular/core';
-import { InputFieldComponent } from '@app/shared/forms/input/input-field.component';
+import { InputFieldComponent } from '@app/shared/components/form/input/input-field.component';
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
 @Component({
   selector: 'country-search-input',
@@ -20,11 +20,11 @@ import { ButtonComponent } from '@app/shared/ui/button/button.component';
         autofocus
         class="mr-3"
         [placeholder]="placeholder()"
-        (keyup.enter)="value.emit(txtSearch.value.toString())"
-        (keyup)="inputValue.set(txtSearch.value.toString())"
         [value]="inputValue()"
+        (input)="updateValue($any($event).target.value)"
+        (keyup.enter)="onSearch()"
       />
-      <ui-button variant="outline" size="sm" (click)="value.emit(txtSearch.value.toString())"
+      <ui-button variant="outline" size="sm" (click)="onSearch()"
         >Search
         <svg
           class="fill-gray-500 dark:fill-gray-400"
@@ -49,21 +49,32 @@ import { ButtonComponent } from '@app/shared/ui/button/button.component';
 export class SearchInput {
   placeholder = input('Buscar');
   debounceTime = input(1000);
-  initialValue = input<string>();
+  initialValue = input<string>('');
 
   value = output<string>();
 
+  // linkedSignal vinculado al initialValue
   inputValue = linkedSignal<string>(() => this.initialValue() ?? '');
 
-  debounceEffect = effect((onCleanup) => {
-    const value = this.inputValue();
+  // Método para actualizar el signal cuando escribas
+  updateValue(newValue: string) {
+    this.inputValue.set(newValue);
+  }
 
-    const timeout = setTimeout(() => {
-      this.value.emit(value);
-    }, this.debounceTime());
+  onSearch() {
+    const current = this.inputValue();
+    console.log('Emitiendo valor:', current); // Aquí ya debería salir con texto
+    this.value.emit(current);
+  }
+  // debounceEffect = effect((onCleanup) => {
+  //   const value = this.inputValue();
 
-    onCleanup(() => {
-      clearTimeout(timeout);
-    });
-  });
+  //   const timeout = setTimeout(() => {
+  //     this.value.emit(value);
+  //   }, this.debounceTime());
+
+  //   onCleanup(() => {
+  //     clearTimeout(timeout);
+  //   });
+  // });
 }

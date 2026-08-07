@@ -1,11 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
-import { CheckboxComponent } from '@app/shared/forms/input/checkbox.component';
-import { InputFieldComponent } from '@app/shared/forms/input/input-field.component';
-import { LabelComponent } from '@app/shared/forms/label/label.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { CheckboxComponent } from '@app/shared/components/form/input/checkbox.component';
+import { InputFieldComponent } from '@app/shared/components/form/input/input-field.component';
+import { LabelComponent } from '@app/shared/components/form/label/label.component';
 @Component({
   selector: 'login-page',
   imports: [

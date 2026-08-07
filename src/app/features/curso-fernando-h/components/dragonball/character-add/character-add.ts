@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { InputFieldComponent } from "@app/shared/forms/input/input-field.component";
 import { ButtonComponent } from "@app/shared/ui/button/button.component";
 import { Character } from '@app/features/curso-fernando-h/interfaces/character.interface';
+import { InputFieldComponent } from '@app/shared/components/form/input/input-field.component';
 @Component({
   selector: 'app-character-add',
   imports: [FormsModule, CommonModule, InputFieldComponent, ButtonComponent],

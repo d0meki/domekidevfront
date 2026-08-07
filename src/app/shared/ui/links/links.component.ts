@@ -8,8 +8,8 @@ type LinkUnderline = 'always' | 'hover' | 'none';
   selector: 'ui-links',
   imports: [RouterLink],
   template: `
-    @if (routerLink) {
-      <a [routerLink]="routerLink" [target]="target" [attr.rel]="relValue" [class]="linkClasses">
+    @if (linkTo !== null) {
+      <a [routerLink]="linkTo" [target]="target" [attr.rel]="relValue" [class]="linkClasses">
         <ng-content />
       </a>
     } @else {
@@ -23,7 +23,7 @@ export class LinksComponent {
   @Input() color: LinkColor = 'primary';
   @Input() underline: LinkUnderline = 'always';
   @Input() href = '#';
-  @Input() routerLink: string | readonly unknown[] | null = null;
+  @Input() linkTo: string | readonly unknown[] | null = null;
   @Input() target?: string;
   @Input() rel?: string;
   @Input() className = '';

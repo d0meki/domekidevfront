@@ -1,20 +1,14 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { Country } from '../../interfaces/country.interface';
 import { ComponentCardComponent } from '@app/shared/components/common/component-card.component';
 import { BadgeComponent } from '@app/shared/ui/badge/badge.component';
 import { LinksComponent } from '@app/shared/ui/links/links.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'country-list',
-  imports: [
-    DecimalPipe,
-    RouterLink,
-    ComponentCardComponent,
-    BadgeComponent,
-    LinksComponent,
-  ],
+  imports: [DecimalPipe, ComponentCardComponent, BadgeComponent, RouterLink],
   template: `
     <section class="mt-5">
       <app-component-card title="Sin titulo">
@@ -70,7 +64,12 @@ import { LinksComponent } from '@app/shared/ui/links/links.component';
                   >
                     Población
                   </th>
-                  <th></th>
+                  <th
+                    scope="col"
+                    class="px-4 py-3 font-medium text-gray-500 sm:px-6 text-start text-theme-xs dark:text-gray-400"
+                  >
+                    Mas Detalle
+                  </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100 dark:divide-white/5">
@@ -93,10 +92,11 @@ import { LinksComponent } from '@app/shared/ui/links/links.component';
                       <app-badge severity="warn">{{ country.population | number }}</app-badge>
                     </td>
                     <td>
-                      <ui-links
-                        [routerLink]="['/bases/by/', country.cca2]"
-                        color="warning"
-                        >Mas Información</ui-links
+                      <a
+                        class="text-warning-600 hover:text-warning-700 dark:text-warning-500 dark:hover:text-warning-400 no-underline hover:underline hover:underline-offset-4"
+                        routerLink="/bases/by/{{ country.cca2 }}"
+                      >
+                        Mas Información</a
                       >
                     </td>
                   </tr>

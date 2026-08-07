@@ -38,7 +38,7 @@ export class CountryService {
   }
 
   searchByCountry(query: string) {
-    const url = `${API_URL}/name/${query}`;
+    const url = `${API_URL}/names.common/${query}`;
     query = query.toLowerCase();
 
     if (this.queryCacheCountry.has(query)) {
@@ -56,7 +56,7 @@ export class CountryService {
     );
   }
 
-  serchByRegion(region: Region) {
+  searchByRegion(region: Region): Observable<Country[]> {
     const url = `${API_URL}/region/${region}`;
 
     if (this.queryCacheRegion.has(region)) {
@@ -74,8 +74,12 @@ export class CountryService {
     );
   }
 
+  serchByRegion(region: Region): Observable<Country[]> {
+    return this.searchByRegion(region);
+  }
+
   searchCountryByAlphaCode(code: string) {
-    const url = `${API_URL}/alpha/${code}`;
+    const url = `${API_URL}/codes.alpha_2/${code}`;
 
     return this.http.get<RESTCountry>(url).pipe(
       map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp.data.objects)),

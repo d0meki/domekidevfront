@@ -1,4 +1,3 @@
-
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 export interface Option {
@@ -13,6 +12,7 @@ export interface Option {
 })
 export class SelectComponent implements OnInit {
   @Input() options: Option[] = [];
+  @Input() id: string = '';
   @Input() placeholder: string = 'Select an option';
   @Input() className: string = '';
   @Input() defaultValue: string = '';
