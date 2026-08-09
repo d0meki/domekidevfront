@@ -1,0 +1,104 @@
+<section class="mx-5 mt-5">
+  <h1 class="text-2xl font-bold">Pipes Personalizados</h1>
+  <h3 class="text-xl font-thin">Pipes no incluidos en Angular</h3>
+</section>
+<section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-5">
+  <app-component-card title="ToggleCase Pipe">
+    <div class="stat-value">{{ name() | toggleCase: upperCase() }}</div>
+    <div class="stat-desc">{{ name() }}</div>
+    <ui-button size="sm" variant="outline" (btnClick)="upperCase.set(!upperCase())"
+      >Cambiar cliente</ui-button
+    >
+  </app-component-card>
+</section>
+<!-- <p-divider />  -->
+<hr />
+<section class="my-2">
+  <h1 class="text-2xl font-bold">Ordenando por: {{ sortBy() }}</h1>
+  <h1 class="text-2xl font-bold">Filtrando por: {{ searchQuery() }}</h1>
+
+  <div class="flex gap-2 justify-end w-full mt-2">
+    <app-input-field
+      type="text"
+      autofocus
+      class="mr-3"
+      placeholder="Buscar Hero"
+      (input)="searchQuery.set($any($event).target.value)"
+    />
+
+    <div class="flex flex-1"></div>
+
+    <ui-button size="sm" variant="outline" (click)="sortBy.set('name')">nombre</ui-button>
+    <ui-button size="sm" variant="outline" (click)="sortBy.set('canFly')">volar</ui-button>
+    <ui-button size="sm" variant="outline" (click)="sortBy.set('color')">color</ui-button>
+    <ui-button size="sm" variant="outline" (click)="sortBy.set('creator')">creador</ui-button>
+  </div>
+</section>
+<!-- <p-divider /> -->
+<hr />
+<section class="mt-5">
+  <div class="card">
+    <table class="w-full">
+      <thead class="border-gray-100 border-y dark:border-white/5">
+        <tr>
+          <th
+            scope="col"
+            class="px-4 py-3 font-medium text-gray-500 sm:px-6 text-start text-theme-xs dark:text-gray-400"
+          >
+            #
+          </th>
+          <th
+            scope="col"
+            class="px-4 py-3 font-medium text-gray-500 sm:px-6 text-start text-theme-xs dark:text-gray-400"
+          >
+            Nombre
+          </th>
+          <th
+            scope="col"
+            class="px-4 py-3 font-medium text-gray-500 sm:px-6 text-start text-theme-xs dark:text-gray-400"
+          >
+            Puede Volar
+          </th>
+          <th
+            scope="col"
+            class="px-4 py-3 font-medium text-gray-500 sm:px-6 text-start text-theme-xs dark:text-gray-400"
+          >
+            Color
+          </th>
+          <th
+            scope="col"
+            class="px-4 py-3 font-medium text-gray-500 sm:px-6 text-start text-theme-xs dark:text-gray-400"
+          >
+            Creador
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 dark:divide-white/5">
+        @for (hero of heroes() | heroSortBy: sortBy() | heroFilter: searchQuery(); track $index) {
+          <tr>
+            <td class="px-4 py-2 text-gray-500 dark:text-gray-300">
+              {{ $index + 1 }}
+            </td>
+            <td class="px-4 py-2 text-gray-500 dark:text-gray-300">
+              {{ hero.name }}
+            </td>
+            <td class="px-4 py-2 text-gray-500 dark:text-gray-300">
+              <span [class]="hero.canFly ? 'text-green-500' : 'text-red-500'">
+                {{ hero.canFly | canFly }}
+              </span>
+            </td>
+            <td class="px-4 py-2">
+              <span [style.color]="hero.color | heroTextColor">{{
+                hero.color | heroColor | titlecase
+              }}</span>
+            </td>
+            <td class="px-4 py-2 text-gray-500 dark:text-gray-300">
+              {{ hero.creator | heroCreator }}
+            </td>
+          </tr>
+        }
+      </tbody>
+      <tfoot class="border-gray-100 border-y dark:border-white/5"></tfoot>
+    </table>
+  </div>
+</section>

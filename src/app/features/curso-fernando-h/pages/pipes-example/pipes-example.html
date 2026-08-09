@@ -1,0 +1,300 @@
+<section class="mx-5 mt-5">
+  <h1 class="text-2xl font-bold">Pipe basicos</h1>
+  <!-- <h3 class="text-xl font-thin">Pipes poco comunes incluidos en Angular</h3> -->
+</section>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="space-y-4">
+    <app-component-card title="Lowercase Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl"> {{ nameUpper() | lowercase }} </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ nameUpper() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Uppercase Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl"> {{ nameLower() | uppercase }} </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ nameLower() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Titlecase Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl"> {{ fullName() | titlecase }} </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ fullName() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Date | long | GMT-6">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ customDate() | date: 'long' : 'GMT-6' : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ customDate() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Date 'YYYY, MM'">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ customDate() | date: 'yyyy, MM' : undefined : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ customDate() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Date | short | GMT-4">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ customDate() | date: 'short' : 'GMT-4' : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ customDate() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Date 'dd/MM/yyyy'">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ customDate() | date: 'dd/MM/yyyy' : undefined : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ customDate() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Date 'HH:mm:ss'">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ customDate() | date: 'HH:mm:ss' : undefined : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ customDate() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Date 'EEEE d, MMMM'">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ customDate() | date: 'EEEE d, MMMM' : undefined : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ customDate() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+</div>
+<div class="col-start-1 col-end-5 flex mt-3">
+  <ui-button size="sm" class="mr-2" variant="outline" (btnClick)="changeLocale('es')"
+    >Change Español</ui-button
+  >
+  <ui-button size="sm" class="mr-2" variant="outline" (btnClick)="changeLocale('en')"
+    >Change Ingles</ui-button
+  >
+  <ui-button size="sm" class="mr-2" variant="outline" (btnClick)="changeLocale('fr')"
+    >Change Frances</ui-button
+  >
+   >
+  <ui-button size="sm" class="mr-2" variant="outline" (btnClick)="changeLocale('fr')"
+    >Change Frances</ui-button
+  >
+</div>
+<section class="mx-5 mt-5">
+  <h1 class="text-2xl font-bold">Pipes Numericos</h1>
+  <!-- <h3 class="text-xl font-thin">Pipes poco comunes incluidos en Angular</h3> -->
+</section>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="space-y-4">
+    <app-component-card title="Number Pipe '1.2-2'">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ totalSells() | number: '1.2-2' : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ totalSells() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Number Pipe '1.1-2">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ totalSells() + 12345678.9 | number: '1.1-2' : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ totalSells() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Currency Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ totalSells() | currency: 'CAD' : 'symbol-narrow' : '1.4-4' : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ totalSells() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Percent Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="font-bold text-2xl">
+            {{ percent() | percent: '1.2-2' : currentLocale() }}
+          </span>
+          <span class="text-surface-500 dark:text-surface-400 text-lg">{{ percent() }}</span>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+</div>
+<section class="mx-5 mt-5">
+  <h1 class="text-2xl font-bold">Pipes poco comunes</h1>
+</section>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="space-y-4">
+    <app-component-card title="Number Pipe '1.2-2'">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <p class="mb-3">
+            Saludos {{ client().name }}, es un placer
+            {{ client().gender | i18nSelect: invitationMap }} a nuestro evento.
+          </p>
+          <ui-button size="sm" class="mr-2" variant="outline" (click)="changeClient()"
+            >Cambiar cliente</ui-button
+          >
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Number Pipe '1.1-2">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <p class="mb-3">Actualmente {{ clients().length | i18nPlural: clientsMap() }}</p>
+          <ui-button
+            size="sm"
+            class="mr-2"
+            variant="outline"
+            (click)="deleteClient()"
+            [disabled]="clients().length === 0"
+            >Borrar Cliente</ui-button
+          >
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Currency Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <b>Original</b>
+          <p class="text-green-500">
+            {{ clients().join(', ') }}
+          </p>
+
+          <b class="mt-2">Slice:0:2</b>
+          <p class="text-green-500">{{ clients() | slice: 0 : 2 }}</p>
+
+          <b class="mt-2">Slice:1:2</b>
+          <p class="text-green-500">{{ clients() | slice: 1 : 2 }}</p>
+
+          <b class="mt-2">Slice:1:3</b>
+          <p class="text-green-500">{{ clients() | slice: 1 : 3 }}</p>
+
+          <b class="mt-2">Slice:3:4</b>
+          <p class="text-green-500">{{ clients() | slice: 3 : 4 }}</p>
+
+          <b class="mt-2">Slice:0:-3</b>
+          <p class="text-green-500">{{ clients() | slice: 0 : -3 }}</p>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Percent Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <pre class="text-green-500">{{ clients() | json }}</pre>
+          <pre class="text-green-500">{{ client() | json }}</pre>
+          <p class="text-green-500">{{ clients().join(', ') | json | uppercase }}</p>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Percent Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <!-- <pre>{{ profile | keyvalue | json }}</pre> -->
+          <ul>
+            @for (item of profile | keyvalue; track $index) {
+              <li>
+                <strong class="text-green-500">{{ item.key | titlecase }}:</strong>
+                <span>
+                  {{ item.value }}
+                </span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+  <div class="space-y-4">
+    <app-component-card title="Percent Pipe">
+      <div class="flex justify-between gap-2">
+        <div class="flex flex-col gap-1">
+          <p>{{ promiseValue | async }}</p>
+
+          @if (promiseValue | async; as value) {
+            <p class="text-green-500">{{ value }}</p>
+          }
+          <!--  -->
+          @else {
+            <p class="text-blue-500">Espere por favor...</p>
+          }
+
+          <!--  -->
+          <h3 class="text-2xl">Observable</h3>
+          <p>{{ myObservableTimer | async }}</p>
+
+          @if (myObservableTimer | async; as value) {
+            <p>Valor: {{ value }}</p>
+          }
+          <!--  -->
+          @else {
+            <p class="text-orange-500">Esperando primer valor</p>
+          }
+        </div>
+      </div>
+    </app-component-card>
+  </div>
+</div>

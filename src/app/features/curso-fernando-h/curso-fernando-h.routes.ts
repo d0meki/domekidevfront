@@ -27,6 +27,14 @@ export const cursoFernandoHRoutes: Routes = [
         loadComponent: () => import('./pages/country/pages/country-page/country-page'),
       },
       {
+        path: 'pipe-example',
+        loadComponent: () => import('./pages/pipes-example/pipes-example'),
+      },
+       {
+        path: 'custom-pipe-example',
+        loadComponent: () => import('./pages/custom-page/custom-page'),
+      },
+      {
         path: '',
         redirectTo: 'counter',
         pathMatch: 'full',

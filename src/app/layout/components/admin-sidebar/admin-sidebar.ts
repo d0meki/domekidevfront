@@ -40,6 +40,7 @@ export default class AdminSidebar {
         { name: 'Counter', path: '/bases/counter', pro: false },
         { name: 'Gifs', path: '/bases/gifs/null', pro: false },
         { name: 'Country', path: '/bases/country', pro: false },
+        { name: 'Pipe Example', path: '/bases/pipe-example', pro: false },
         { name: '404 Error', path: '/error-404', pro: false },
       ],
     },
