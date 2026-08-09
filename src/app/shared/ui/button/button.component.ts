@@ -4,20 +4,16 @@ import { SafeHtmlPipe } from '@app/layout/pipe/safe-html.pipe';
 
 @Component({
   selector: 'ui-button',
-  imports: [
-    CommonModule,
-    SafeHtmlPipe,
-  ],
+  imports: [CommonModule, SafeHtmlPipe],
   templateUrl: './button.component.html',
   styles: ``,
-  host: {
-
-  },
+  host: {},
 })
 export class ButtonComponent {
-
   @Input() size: 'sm' | 'md' = 'md';
-  @Input() variant: 'primary' | 'outline' = 'primary';
+  @Input() variant:
+    'primary' | 'outline' | 'danger' | 'success' | 'warning' | 'info' | 'light' | 'dark' =
+    'primary';
   @Input() disabled = false;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() className = '';
@@ -27,15 +23,30 @@ export class ButtonComponent {
   @Output() btnClick = new EventEmitter<Event>();
 
   get sizeClasses(): string {
-    return this.size === 'sm'
-      ? 'px-4 py-3 text-sm'
-      : 'px-5 py-3.5 text-sm';
+    return this.size === 'sm' ? 'px-4 py-3 text-sm' : 'px-5 py-3.5 text-sm';
   }
 
   get variantClasses(): string {
-    return this.variant === 'primary'
-      ? 'bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300'
-      : 'bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300';
+    switch (this.variant) {
+      case 'primary':
+        return 'bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300';
+      case 'outline':
+        return 'bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300';
+      case 'danger':
+        return 'bg-red-500 text-white shadow-theme-xs hover:bg-red-600 disabled:bg-red-300';
+      case 'success':
+        return 'bg-green-500 text-white shadow-theme-xs hover:bg-green-600 disabled:bg-green-300';
+      case 'warning':
+        return 'bg-yellow-500 text-white shadow-theme-xs hover:bg-yellow-600 disabled:bg-yellow-300';
+      case 'info':
+        return 'bg-blue-500 text-white shadow-theme-xs hover:bg-blue-600 disabled:bg-blue-300';
+      case 'light':
+        return 'bg-gray-200 text-gray-800 shadow-theme-xs hover:bg-gray-300 disabled:bg-gray-100';
+      case 'dark':
+        return 'bg-gray-800 text-white shadow-theme-xs hover:bg-gray-900 disabled:bg-gray-600';
+      default:
+        return '';
+    }
   }
 
   get disabledClasses(): string {

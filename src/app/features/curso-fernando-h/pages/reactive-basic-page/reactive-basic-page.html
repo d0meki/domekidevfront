@@ -1,0 +1,76 @@
+<app-component-card>
+  <h1 class="text-2xl font-bold">Reactivos Básicos</h1>
+  <h3 class="text-xl font-thin">Templates driven forms</h3>
+</app-component-card>
+<section class="grid grid-cols-1 mt-3">
+  <app-component-card title="Formulario">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSave()">
+      <div class="flex flex-col md:flex-row gap-4 mt-5">
+        <!-- Campo de producto -->
+        <div>
+          <app-input-field
+            type="text"
+            placeholder="Nombre del Producto"
+            formControlName="name"
+            [error]="formUtils.isValidControl(myForm.get('name'))"
+            [hint]="formUtils.getControlError(myForm.get('name')) ?? undefined"
+          />
+        </div>
+        <!-- Campo de producto -->
+        <div>
+          <app-input-field
+            type="number"
+            placeholder="Precio del Producto"
+            formControlName="price"
+            [error]="formUtils.isValidControl(myForm.get('price'))"
+            [hint]="formUtils.getControlError(myForm.get('price')) ?? undefined"
+          />
+        </div>
+
+        <!-- Campo de existencias -->
+        <div>
+          <app-input-field
+            type="number"
+            placeholder="Existencias"
+            formControlName="inStorage"
+            [error]="formUtils.isValidControl(myForm.get('inStorage'))"
+            [hint]="formUtils.getControlError(myForm.get('inStorage')) ?? undefined"
+          />
+        </div>
+      </div>
+      <div class="mt-3">
+        <ui-button type="submit" variant="primary" size="md">Guardar</ui-button>
+      </div>
+    </form>
+  </app-component-card>
+</section>
+<hr />
+<section class="grid grid-cols-1 mt-5">
+  <app-component-card title="Informacion del Formulario">
+    <span class="font-bold">Valid</span>
+    <pre>{{ myForm.valid | json }}</pre>
+
+    <span class="font-bold">Pristine</span>
+    <pre>{{ myForm.pristine | json }}</pre>
+
+    <span class="font-bold">Touched</span>
+    <pre>{{ myForm.touched | json }}</pre>
+
+    <span class="font-bold">Value</span>
+    <pre>{{ myForm.value | json }}</pre>
+
+    <span class="font-bold">Errores en name</span>
+    <pre>{{ myForm.controls['name'].errors | json }}</pre>
+    <pre>{{ myForm.controls['price'].errors | json }}</pre>
+    <pre>{{ myForm.controls['inStorage'].errors | json }}</pre>
+
+    <span class="font-bold">Precio</span>
+    <pre>{{ myForm.controls['price'].value | json }}</pre>
+
+    <span class="font-bold">Producto</span>
+    <pre>{{ myForm.controls['name'].value | json }}</pre>
+
+    <span class="font-bold">Existencias</span>
+    <pre>{{ myForm.controls['inStorage'].value | json }}</pre>
+  </app-component-card>
+</section>

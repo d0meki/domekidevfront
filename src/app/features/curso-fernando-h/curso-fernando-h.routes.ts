@@ -30,9 +30,17 @@ export const cursoFernandoHRoutes: Routes = [
         path: 'pipe-example',
         loadComponent: () => import('./pages/pipes-example/pipes-example'),
       },
-       {
+      {
         path: 'custom-pipe-example',
         loadComponent: () => import('./pages/custom-page/custom-page'),
+      },
+      {
+        path: 'forms-basic',
+        loadComponent: () => import('./pages/reactive-basic-page/reactive-basic-page'),
+      },
+      {
+        path: 'forms-dinamic',
+        loadComponent: () => import('./pages/reactive-dynamic-page/reactive-dynamic-page'),
       },
       {
         path: '',

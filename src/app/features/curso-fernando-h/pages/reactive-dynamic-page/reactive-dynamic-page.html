@@ -1,0 +1,94 @@
+<section class="mx-5 mt-5">
+  <h1 class="text-2xl font-bold">Reactivos Dinamicos</h1>
+  <h3 class="text-xl font-thin">Templates driven forms</h3>
+</section>
+<!-- <p-divider /> -->
+<hr />
+
+<section class="grid grid-cols-1">
+  <app-component-card title="Formulario">
+    <form autocomplete="off" [formGroup]="myForm">
+      <div class="grid grid-cols-1 gap-4 mt-5">
+        <div>
+          <app-input-field type="text" placeholder="Nombre" formControlName="name" />
+          @if (formUtils.isValidField(myForm, 'name')) {
+
+            <app-alert
+              title="Error"
+              variant="error"
+              message=" {{ formUtils.getFieldError(myForm, 'name') }}"
+            >
+            </app-alert>
+          }
+        </div>
+
+        <!-- Campo de producto -->
+        <div class="mt-4">
+          <app-input-field
+            type="text"
+            placeholder="Agregar Favorito"
+            [formControl]="newFavorite"
+            (keydown.enter)="onAddToFavorites()"
+            (keydown.enter)="$event.preventDefault()"
+          />
+          <ui-button size="sm" variant="outline" (click)="onAddToFavorites()" class="mt-2"
+            >Agregar Favorito</ui-button
+          >
+        </div>
+
+        <!-- Campo de existencias -->
+        <div formArrayName="favoriteGames">
+          @for (favoriteGame of favoriteGames.controls; track $index; let i = $index) {
+            <app-input-field
+              type="text"
+              placeholder="Favorito"
+              [formControlName]="i"
+              class="mt-6"
+            />
+            <ui-button size="sm" variant="danger" (click)="onDeleteFavorite(i)" class="mt-2"
+              >Eliminar</ui-button
+            >
+            @if (formUtils.isValidFieldInArray(favoriteGames, i)) {
+              <app-alert
+                title="Error"
+                variant="error"
+                message=" {{ formUtils.getFieldErrorInArray(favoriteGames, i) }}"
+              >
+              </app-alert>
+            }
+          }
+          @if (formUtils.isValidField(myForm, 'favoriteGames')) {
+            <app-alert title="Error" variant="error" message="Debe Tener al menos 2 juegos">
+            </app-alert>
+          }
+        </div>
+      </div>
+      <div class="mt-3">
+        <!-- <p-button class="float-end" type="submit" label="Guardar" /> -->
+        <ui-button
+          class="float-end"
+          type="submit"
+         
+          variant="primary"
+          size="md"
+        > Guardar </ui-button>
+        <!-- [disabled]="myForm.invalid"  -->
+      </div>
+    </form>
+  </app-component-card>
+</section>
+<!-- <p-divider /> -->
+<hr />
+<section class="grid grid-cols-1 mt-5">
+  <app-component-card title="Informacion del Formulario">
+    <span class="font-bold">Valid</span>
+    <pre>{{ myForm.valid | json }}</pre>
+
+    <span class="font-bold">Value</span>
+    <pre>{{ myForm.value | json }}</pre>
+
+    <span class="font-bold">Errores Agregar Juego</span>
+    <pre>{{ myForm.controls['favoriteGames'].errors | json }}</pre>
+    <pre>{{ myForm.controls['favoriteGames'].value | json }}</pre>
+  </app-component-card>
+</section>
